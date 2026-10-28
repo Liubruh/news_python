@@ -6,9 +6,14 @@ from config.database import TORTOISE_ORM
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from utils.exception_handlers import register_exception_handlers
+
 # API 接口文档 、 数据库模型文档
 
 app = FastAPI()
+
+register_exception_handlers(app)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

@@ -4,8 +4,9 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["models.news", "models.user"],  # 注意：必须加上 "aerich.models"
+            "models": ["models.news", "models.users"],  # 注意：必须加上 "aerich.models"
             "default_connection": "default",
         }
     },
+    "use_tz": False,
 }

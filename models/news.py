@@ -35,7 +35,7 @@ class news(Base):
     content = fields.TextField(null=False, description="新闻内容")
     image = fields.CharField(max_length=255, description="封面图片URL")
     author = fields.CharField(max_length=50, description="作者")
-    category = fields.ForeignKeyField("models.news.news_category", related_name="category", null=False)
+    category = fields.ForeignKeyField("models.news_category", related_name="category", null=False)
     # ForeignKeyField 会自动加 _id
     views = fields.IntField(default=0, null=False, description="浏览量")
     publish_time = fields.DateField(auto_now_add=True, description="发布时间")

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from tortoise import fields
 from tortoise.models import Model
@@ -23,9 +23,9 @@ class User(Model):
         description="性別"
     )
     bio = fields.CharField(max_length=500, default="lazy", description="個人簡介")
-    phone = fields.CharField(max_length=20, unique=True, description="手機號")
-    created_at = fields.DateTimeField(auto_now_add=True, description="創建時間", default=datetime.now())
-    updated_at = fields.DateTimeField(auto_now=True, default=datetime.now(), description="修改時間")
+    phone = fields.CharField(max_length=20, null=True, description="手機號")
+    created_at = fields.DateTimeField(auto_now_add=True, description="創建時間")
+    updated_at = fields.DateTimeField(auto_now=True, description="修改時間")
 
     def __str__(self):
         return f"<User(id={self.id},username='{self.username}',nickname='{self.nickname}'>"
@@ -49,7 +49,7 @@ class UserToken(Model):
     token = fields.CharField(max_length=255, unique=True, null=False, description="令牌值")
     # DateTimeFields -> 日期+時間; DataFields -> 時間;
     expires_at = fields.DateTimeField(null=False, description="過期時間")
-    created_at = fields.DateTimeField(default=datetime.now(), description="創建時間")
+    created_at = fields.DateTimeField(auto_now_add=True, description="創建時間")
 
     def __str__(self):
         return f"<UserToken(id={self.id}, user_id={self.user.id},token='{self.token}'"
